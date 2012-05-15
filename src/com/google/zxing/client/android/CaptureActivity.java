@@ -82,9 +82,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
   private static final String TAG = CaptureActivity.class.getSimpleName();
 
-  private static final int SETTINGS_ID = Menu.FIRST + 2;
-  private static final int HELP_ID = Menu.FIRST + 3;
-  private static final int ABOUT_ID = Menu.FIRST + 4;
+  private static final int ABOUT_ID = Menu.FIRST;
 
   private static final long DEFAULT_INTENT_RESULT_DURATION_MS = 1500L;
   private static final long BULK_MODE_SCAN_DELAY_MS = 1000L;
@@ -316,10 +314,6 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     super.onCreateOptionsMenu(menu);
-    menu.add(Menu.NONE, SETTINGS_ID, Menu.NONE, R.string.menu_settings)
-        .setIcon(android.R.drawable.ic_menu_preferences);
-    menu.add(Menu.NONE, HELP_ID, Menu.NONE, R.string.menu_help)
-        .setIcon(android.R.drawable.ic_menu_help);
     menu.add(Menu.NONE, ABOUT_ID, Menu.NONE, R.string.menu_about)
         .setIcon(android.R.drawable.ic_menu_info_details);
     return true;
@@ -330,14 +324,6 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     Intent intent = new Intent(Intent.ACTION_VIEW);
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
     switch (item.getItemId()) {
-      case SETTINGS_ID:
-        intent.setClassName(this, PreferencesActivity.class.getName());
-        startActivity(intent);
-        break;
-      case HELP_ID:
-        intent.setClassName(this, HelpActivity.class.getName());
-        startActivity(intent);
-        break;
       case ABOUT_ID:
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.title_about) + versionName);
@@ -593,6 +579,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         if (ecLevel != null) {
           intent.putExtra(Intents.Scan.RESULT_ERROR_CORRECTION_LEVEL, ecLevel);
         }
+        @SuppressWarnings("unchecked")
         Iterable<byte[]> byteSegments = (Iterable<byte[]>) metadata.get(ResultMetadataType.BYTE_SEGMENTS);
         if (byteSegments != null) {
           int i = 0;
