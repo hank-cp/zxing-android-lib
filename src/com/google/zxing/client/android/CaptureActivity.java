@@ -158,7 +158,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
     PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
-    showHelpOnFirstLaunch();
+//    showHelpOnFirstLaunch();
   }
 
   @Override
