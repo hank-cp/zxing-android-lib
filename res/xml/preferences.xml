@@ -70,11 +70,5 @@
         android:defaultValue="false"
         android:title="@string/preferences_bulk_mode_title"
         android:summary="@string/preferences_bulk_mode_summary"/>
-    <ListPreference
-        android:key="preferences_search_country"
-        android:defaultValue="-"
-        android:entries="@array/country_codes"
-        android:entryValues="@array/country_codes"
-        android:title="@string/preferences_search_country"/>
   </PreferenceCategory>
 </PreferenceScreen>
